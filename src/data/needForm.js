@@ -24,6 +24,7 @@ export const CATEGORIES = [
   "Infrastructure",
   "Water & Sanitation",
   "Energy",
+  "Skills & Talent",
   "Agriculture",
   "Environment",
   "Livelihoods & Employment",

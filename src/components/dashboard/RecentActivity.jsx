@@ -1,4 +1,13 @@
-import { CircleCheck, Flag, MessageCircle } from "lucide-react";
+import {
+  Building2,
+  CircleAlert,
+  CircleCheck,
+  CircleX,
+  ClipboardList,
+  Clock,
+  Flag,
+  MessageCircle,
+} from "lucide-react";
 import Card from "@/components/common/Card";
 import SectionHeader from "@/components/common/SectionHeader";
 
@@ -7,12 +16,19 @@ const icons = {
   milestone: <CircleCheck size={16} className="text-success" />,
   update: <Flag size={16} fill="currentColor" className="text-brand-600" />,
   info: <MessageCircle size={16} fill="currentColor" strokeWidth={0} className="text-danger" />,
+    // used on the Need Details page
+  review: <Clock size={16} className="text-brand-600" />,
+  submitted: <CircleCheck size={16} className="text-muted" />,
+  changes: <CircleAlert size={16} className="text-danger" />,
+  rejected: <CircleX size={16} className="text-danger" />,
+  project: <Building2 size={16} className="text-muted" />,
+  draft: <ClipboardList size={16} className="text-muted" />,
 };
 
-export default function RecentActivity({ items }) {
+export default function RecentActivity({ items, title = "Recent Activity" }) {
   return (
     <Card className="p-6">
-      <SectionHeader title="Recent Activity" />
+      <SectionHeader title={title} />
       <ol className="mt-8">
         {items.map((item, i) => (
           <li key={item.id} className="relative flex gap-4 pb-8 last:pb-0">

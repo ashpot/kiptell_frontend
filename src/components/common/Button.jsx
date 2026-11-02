@@ -7,6 +7,9 @@ const variants = {
   outline: "border border-line bg-white text-ink hover:bg-surface",
   "outline-danger": "border border-danger-200 bg-white text-danger hover:bg-danger-50",
   ghost: "text-ink hover:bg-surface",
+  "outline-success": "border border-success/30 bg-white text-success hover:bg-success-50",
+  "outline-warning": "border border-brand-200 bg-white text-brand-600 hover:bg-brand-50",
+  "outline-muted": "border border-line bg-white text-muted hover:bg-surface",
 };
 
 const sizes = {

@@ -12,3 +12,12 @@ export const ROLE_BASE_PATH = {
   [ROLES.COMPANY]: "/company",
   [ROLES.ORGANIZATION]: "/organization",
 };
+
+
+/** Human-readable role names */
+export const ROLE_LABELS = {
+  [ROLES.NEED_OWNER]: "Need Owner",
+  [ROLES.ADMIN]: "Admin",
+  [ROLES.COMPANY]: "Company",
+  [ROLES.ORGANIZATION]: "Organization",
+};

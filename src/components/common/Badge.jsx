@@ -4,7 +4,8 @@ const tones = {
   success: "border-success/40 bg-success-50 text-success",
   warning: "border-brand-200 bg-brand-50 text-brand-600",
   danger: "border-danger-200 bg-danger-50 text-danger",
-  neutral: "border-line bg-surface text-muted",
+  neutral: "border-line bg-surface text-ink/70",
+  outline: "border-line bg-white text-ink",
 };
 
 export default function Badge({ tone = "neutral", icon: Icon, className, children }) {

@@ -5,6 +5,7 @@
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-surface font-sans text-ink;

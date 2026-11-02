@@ -5,6 +5,18 @@ import ComingSoonPage from "@/pages/shared/ComingSoonPage";
 // Need Owner
 import NeedOwnerDashboardPage from "@/pages/need_owner/DashboardPage";
 import SubmitNeedPage from "@/pages/need_owner/SubmitNeedPage";
+import MyNeedsPage from "@/pages/need_owner/MyNeedsPage";
+import NeedDetailsPage from "@/pages/need_owner/NeedDetailsPage";
+import ProjectsPage from "@/pages/need_owner/ProjectsPage";
+import ProjectDetailsPage from "@/pages/need_owner/ProjectDetailsPage";
+import ImpactPage from "@/pages/need_owner/ImpactPage";
+import ImpactDetailsPage from "@/pages/need_owner/ImpactDetailsPage";
+import NotificationsPage from "@/pages/need_owner/NotificationsPage";
+import ProfilePage from "@/pages/need_owner/ProfilePage";
+import SettingsPage from "@/pages/need_owner/SettingsPage";
+import HelpSupportPage from "@/pages/need_owner/HelpSupportPage";
+import LandingPage from "@/pages/public/LandingPage";
+import SignUpPage from "@/pages/public/SignUpPage";
 
 /**
  * Route map, grouped by user type.
@@ -13,20 +25,32 @@ import SubmitNeedPage from "@/pages/need_owner/SubmitNeedPage";
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/need-owner/overview" replace />} />
+      {/* ---------- Public ---------- */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<ComingSoonPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/terms" element={<ComingSoonPage />} />
+      <Route path="/privacy" element={<ComingSoonPage />} />
+      <Route path="/explore/*" element={<ComingSoonPage />} />
 
       {/* ---------- Need Owner ---------- */}
       <Route path="/need-owner" element={<DashboardLayout />}>
         <Route index element={<Navigate to="overview" replace />} />
         <Route path="overview" element={<NeedOwnerDashboardPage />} />
-        <Route path="needs" element={<ComingSoonPage />} />
-        <Route path="projects" element={<ComingSoonPage />} />
-        <Route path="impact" element={<ComingSoonPage />} />
-        <Route path="notifications" element={<ComingSoonPage />} />
-        <Route path="profile" element={<ComingSoonPage />} />
-        <Route path="settings" element={<ComingSoonPage />} />
-        <Route path="help" element={<ComingSoonPage />} />
+        <Route path="needs" element={<MyNeedsPage />} />
+        <Route path="needs/:needId" element={<NeedDetailsPage />} />
+        <Route path="needs/:needId/*" element={<ComingSoonPage />} />
+        <Route path="projects" element={<ProjectsPage />} />
+        <Route path="projects/:projectId" element={<ProjectDetailsPage />} />
+        <Route path="projects/:projectId/*" element={<ComingSoonPage />} />
+        <Route path="impact" element={<ImpactPage />} />
+        <Route path="impact/:impactId" element={<ImpactDetailsPage />} />
+        <Route path="notifications" element={<NotificationsPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="settings" element={<SettingsPage />} />
+        <Route path="help" element={<HelpSupportPage />} />
         <Route path="submit-need" element={<SubmitNeedPage />} />
+        
       </Route>
 
       {/* ---------- Admin ---------- */}

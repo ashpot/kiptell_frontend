@@ -1,8 +1,16 @@
-import { FileText, Hourglass, FolderOpen, CircleCheck } from "lucide-react";
+import { BarChart3, CircleCheck, FileText, FolderOpen, Hourglass, StickyNote, Users } from "lucide-react";
 import Card from "@/components/common/Card";
 import { cn } from "@/lib/cn";
 
-const icons = { file: FileText, hourglass: Hourglass, folder: FolderOpen, check: CircleCheck };
+const icons = {
+  file: FileText,
+  hourglass: Hourglass,
+  folder: FolderOpen,
+  check: CircleCheck,
+  users: Users,
+  notes: StickyNote,
+  chart: BarChart3,
+};
 
 const tones = {
   brand: "border-brand-200 bg-brand-50 text-brand-600",
@@ -21,7 +29,7 @@ export default function StatCard({ value, title, caption, icon, tone = "neutral"
         </span>
       </div>
       <h3 className="mt-7 text-lg font-medium leading-tight">{title}</h3>
-      <p className="mt-1 text-sm text-muted">{caption}</p>
+      {caption && <p className="mt-1 text-sm text-muted">{caption}</p>}
     </Card>
   );
 }

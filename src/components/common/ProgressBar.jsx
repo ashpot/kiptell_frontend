@@ -1,4 +1,7 @@
-export default function ProgressBar({ value = 0, label }) {
+import { cn } from "@/lib/cn";
+
+/** tone: "brand" (yellow, default) or "success" (green, for finished work) */
+export default function ProgressBar({ value = 0, label, tone = "brand" }) {
   return (
     <div
       className="h-1.5 w-full overflow-hidden rounded-full bg-line"
@@ -8,7 +11,10 @@ export default function ProgressBar({ value = 0, label }) {
       aria-valuemax={100}
       aria-label={label}
     >
-      <div className="h-full rounded-full bg-brand" style={{ width: `${value}%` }} />
+      <div
+        className={cn("h-full rounded-full", tone === "success" ? "bg-success" : "bg-brand")}
+        style={{ width: `${value}%` }}
+      />
     </div>
   );
 }
