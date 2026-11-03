@@ -5,7 +5,7 @@ import { AUTH_FOOTER_LINKS, ROLE_BENEFITS } from "@/data/auth";
 import { cn } from "@/lib/cn";
 
 /** Faint perspective grid behind the page */
-function AuthBackground() {
+export function AuthBackground({ vanishX = 560 }) {
   const rows = [18, 46, 80, 120, 168, 224, 290];
   const cols = Array.from({ length: 12 }, (_, i) => -500 + i * 220);
   return (
@@ -19,7 +19,7 @@ function AuthBackground() {
         <line key={y} x1="0" x2="1440" y1={y} y2={y} stroke="currentColor" strokeWidth="1" />
       ))}
       {cols.map((x) => (
-        <line key={x} x1="560" y1="-140" x2={x} y2="900" stroke="currentColor" strokeWidth="1" />
+        <line key={x} x1={vanishX} y1="-140" x2={x} y2="900" stroke="currentColor" strokeWidth="1" />
       ))}
     </svg>
   );
@@ -38,7 +38,7 @@ function Benefits({ className }) {
   );
 }
 
-function AuthFooter({ className }) {
+export function AuthFooter({ className }) {
   return (
     <div className={cn("flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-[15px] text-neutral-500 lg:justify-between", className)}>
       <nav aria-label="Legal" className="flex items-center gap-3">

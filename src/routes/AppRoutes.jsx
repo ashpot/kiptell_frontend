@@ -17,6 +17,7 @@ import SettingsPage from "@/pages/need_owner/SettingsPage";
 import HelpSupportPage from "@/pages/need_owner/HelpSupportPage";
 import LandingPage from "@/pages/public/LandingPage";
 import SignUpPage from "@/pages/public/SignUpPage";
+import LoginPage from "@/pages/public/LoginPage";
 
 /**
  * Route map, grouped by user type.
@@ -27,7 +28,8 @@ export default function AppRoutes() {
     <Routes>
       {/* ---------- Public ---------- */}
       <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<ComingSoonPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/forgot-password" element={<ComingSoonPage />} />
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/terms" element={<ComingSoonPage />} />
       <Route path="/privacy" element={<ComingSoonPage />} />
