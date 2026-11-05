@@ -18,6 +18,13 @@ import HelpSupportPage from "@/pages/need_owner/HelpSupportPage";
 import LandingPage from "@/pages/public/LandingPage";
 import SignUpPage from "@/pages/public/SignUpPage";
 import LoginPage from "@/pages/public/LoginPage";
+import { ROLES } from "@/config/roles";
+import GuestRoute from "@/components/auth/GuestRoute";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
+
+
+// ORGANIZATION
+import OrganizationDashboardPage from "@/pages/organization/DashboardPage";
 
 /**
  * Route map, grouped by user type.
@@ -27,15 +34,18 @@ export default function AppRoutes() {
   return (
     <Routes>
       {/* ---------- Public ---------- */}
-      <Route path="/" element={<LandingPage />} />
+      <Route element={<GuestRoute />}>
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/forgot-password" element={<ComingSoonPage />} />
       <Route path="/signup" element={<SignUpPage />} />
+    </Route>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/forgot-password" element={<ComingSoonPage />} />
       <Route path="/terms" element={<ComingSoonPage />} />
       <Route path="/privacy" element={<ComingSoonPage />} />
       <Route path="/explore/*" element={<ComingSoonPage />} />
 
       {/* ---------- Need Owner ---------- */}
+      <Route element={<ProtectedRoute role={ROLES.NEED_OWNER} />}>
       <Route path="/need-owner" element={<DashboardLayout />}>
         <Route index element={<Navigate to="overview" replace />} />
         <Route path="overview" element={<NeedOwnerDashboardPage />} />
@@ -52,7 +62,7 @@ export default function AppRoutes() {
         <Route path="settings" element={<SettingsPage />} />
         <Route path="help" element={<HelpSupportPage />} />
         <Route path="submit-need" element={<SubmitNeedPage />} />
-        
+      </Route>
       </Route>
 
       {/* ---------- Admin ---------- */}
@@ -62,7 +72,15 @@ export default function AppRoutes() {
       {/* <Route path="/company" element={<DashboardLayout />}> ... </Route> */}
 
       {/* ---------- Organization ---------- */}
-      {/* <Route path="/organization" element={<DashboardLayout />}> ... </Route> */}
+      <Route element={<ProtectedRoute role={ROLES.ORGANIZATION} />}>
+        <Route path="/organization" element={<DashboardLayout />}>
+          <Route index element={<Navigate to="overview" replace />} />
+          <Route path="overview" element={<OrganizationDashboardPage />} />
+          <Route path="notifications" element={<NotificationsPage />} />
+          {/* every other Organization page shows the placeholder until it's designed */}
+          <Route path="*" element={<ComingSoonPage />} />
+        </Route>
+      </Route>
 
       <Route path="*" element={<ComingSoonPage />} />
     </Routes>

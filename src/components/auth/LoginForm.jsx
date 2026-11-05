@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CircleUser, Eye, EyeOff, LockKeyhole } from "lucide-react";
 import Field from "@/components/forms/Field";
 import { ROLE_BASE_PATH } from "@/config/roles";
@@ -9,6 +9,7 @@ import AuthInput from "./AuthInput";
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { signIn } = useAuth();
 
   const [form, setForm] = useState({ identifier: "", password: "", remember: true });
@@ -34,10 +35,13 @@ export default function LoginForm() {
     setSubmitting(true);
     setFormError("");
     try {
-      // TODO: when the API exists, "remember" decides how long the session lasts
       const user = await loginUser(form);
-      signIn(user);
-      navigate(`${ROLE_BASE_PATH[user.role]}/overview`, { replace: true });
+      signIn(user, { remember: form.remember });
+
+      // Go back to the page they were trying to open, if it belongs to their dashboard
+      const base = ROLE_BASE_PATH[user.role];
+      const from = location.state?.from?.pathname;
+      navigate(from && from.startsWith(base) ? from : `${base}/overview`, { replace: true });
     } catch (err) {
       setFormError(err.message || "Couldn't log you in. Please try again.");
       setSubmitting(false);

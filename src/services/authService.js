@@ -16,7 +16,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
  */
 const ACCOUNTS = [
   { username: "chisom", email: "chisom@example.com", password: "password123", role: "need_owner", firstName: "Chisom", lastName: "Ezeji", phone: "+234 800 000 0000", address: "Eden Estate, Ikeja, Lagos", country: "Nigeria" },
-  { username: "org", email: "org@example.com", password: "password123", role: "organization", firstName: "Ngozi", lastName: "Adeyemi", phone: "+234 801 111 2222", address: "Victoria Island, Lagos", country: "Nigeria" },
+  { username: "org", email: "org@example.com", password: "password123", role: "organization", organizationName: "Horizon Foundation", firstName: "Ngozi", lastName: "Adeyemi", phone: "+234 801 111 2222", address: "Victoria Island, Lagos", country: "Nigeria" },
   { username: "company", email: "company@example.com", password: "password123", role: "company", firstName: "Tunde", lastName: "Bello", phone: "+234 802 333 4444", address: "Wuse 2, Abuja", country: "Nigeria" },
 ];
 

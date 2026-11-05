@@ -1,9 +1,21 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { AuthBackground, AuthCard, AuthFooter } from "@/components/auth/AuthLayout";
 import LoginForm from "@/components/auth/LoginForm";
 import LogoMark from "@/components/auth/LogoMark";
+import Toast from "@/components/common/Toast";
 
 export default function LoginPage() {
+  const location = useLocation();
+  // Shown once when someone arrives here by logging out
+  const [toast, setToast] = useState(location.state?.loggedOut ? "You've been logged out." : "");
+
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(""), 2500);
+    return () => clearTimeout(timer);
+  }, [toast]);
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-neutral-100 text-ink">
       <AuthBackground vanishX={720} />
@@ -21,6 +33,8 @@ export default function LoginPage() {
           <AuthFooter className="mt-6" />
         </div>
       </div>
+
+      <Toast message={toast} />
     </div>
   );
 }

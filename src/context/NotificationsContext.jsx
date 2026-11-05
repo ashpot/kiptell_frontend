@@ -1,24 +1,29 @@
 import { createContext, useContext, useMemo, useState } from "react";
-import { notifications as initialNotifications } from "@/data/notifications";
+import { useAuth } from "@/context/AuthContext";
+import { notificationsByRole } from "@/data/notifications";
 
 const NotificationsContext = createContext(null);
 
 /**
  * Shared notification state so the bell dropdown and the Notifications page stay in sync.
- * Replace the local state with API calls when the backend exists.
+ * Shows the list for the signed-in account type. Replace with API calls when the backend exists.
  */
 export function NotificationsProvider({ children }) {
-  const [items, setItems] = useState(initialNotifications);
+  const { user } = useAuth();
+  const role = user?.role;
+  const [readKeys, setReadKeys] = useState({}); // "role:id" -> true once read
 
-  const value = useMemo(
-    () => ({
+  const value = useMemo(() => {
+    const base = notificationsByRole[role] ?? [];
+    const items = base.map((n) => (readKeys[`${role}:${n.id}`] ? { ...n, unread: false } : n));
+    return {
       notifications: items,
       unreadCount: items.filter((n) => n.unread).length,
-      markRead: (id) => setItems((list) => list.map((n) => (n.id === id ? { ...n, unread: false } : n))),
-      markAllRead: () => setItems((list) => list.map((n) => ({ ...n, unread: false }))),
-    }),
-    [items]
-  );
+      markRead: (id) => setReadKeys((k) => ({ ...k, [`${role}:${id}`]: true })),
+      markAllRead: () =>
+        setReadKeys((k) => ({ ...k, ...Object.fromEntries(base.map((n) => [`${role}:${n.id}`, true])) })),
+    };
+  }, [role, readKeys]);
 
   return <NotificationsContext.Provider value={value}>{children}</NotificationsContext.Provider>;
 }

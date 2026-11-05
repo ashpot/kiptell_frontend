@@ -5,7 +5,7 @@
  */
 const base = "/need-owner";
 
-export const notifications = [
+const needOwnerNotifications = [
   {
     id: 1,
     icon: "warning",
@@ -129,3 +129,64 @@ export const notifications = [
     action: { label: "View Impact", variant: "outline-success", to: `${base}/impact/imp-1001` },
   },
 ];
+
+
+const org = "/organization";
+
+const organizationNotifications = [
+  {
+    id: 101,
+    icon: "warning",
+    category: "needs",
+    title: "New bids to review",
+    body: '5 companies have submitted bids for "Community Health Centre Equipment". Review and select the best bid.',
+    context: "Community Health Centre Equipment",
+    time: "Just now",
+    group: "Today",
+    unread: true,
+    action: { label: "Review Bids", variant: "outline-warning", to: `${org}/needs/KT-1048/bids` },
+  },
+  {
+    id: 102,
+    icon: "warning",
+    category: "needs",
+    title: "New bids to review",
+    body: '3 companies have submitted bids for "Primary School Library Renovation". Review bids to select a partner.',
+    context: "Primary School Library Renovation",
+    time: "3 hours ago",
+    group: "Today",
+    unread: true,
+    action: { label: "Review Bids", variant: "outline-warning", to: `${org}/needs/KT-1060/bids` },
+  },
+  {
+    id: 103,
+    icon: "progress",
+    dropdownIcon: "project",
+    category: "projects",
+    title: "Project progress updated",
+    body: '"Community Water Access" is now 75% complete.',
+    context: "Community Water Access",
+    time: "Yesterday",
+    group: "Yesterday",
+    unread: false,
+    action: { label: "View Project", variant: "outline", to: `${org}/projects/prj-1003` },
+  },
+  {
+    id: 104,
+    icon: "success",
+    category: "impact",
+    title: "Impact information available",
+    body: 'Impact information from "Primary School Library Upgrade" is now available.',
+    context: "Primary School Library Upgrade",
+    time: "Aug 20, 2026",
+    group: "Earlier",
+    unread: false,
+    action: { label: "View Impact", variant: "outline-success", to: `${org}/impact/imp-1002` },
+  },
+];
+
+/** Each account type sees its own notifications */
+export const notificationsByRole = {
+  need_owner: needOwnerNotifications,
+  organization: organizationNotifications,
+};

@@ -1,4 +1,4 @@
-import { BarChart3, CircleCheck, FileText, FolderOpen, Hourglass, StickyNote, Users } from "lucide-react";
+import { BarChart3, Briefcase, CircleCheck, FileText, FolderOpen, Hourglass, StickyNote, Users } from "lucide-react";
 import Card from "@/components/common/Card";
 import { cn } from "@/lib/cn";
 
@@ -10,6 +10,7 @@ const icons = {
   users: Users,
   notes: StickyNote,
   chart: BarChart3,
+  briefcase: Briefcase,
 };
 
 const tones = {

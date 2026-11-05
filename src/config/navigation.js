@@ -17,5 +17,10 @@ export const NAV_ITEMS = {
   ],
   [ROLES.ADMIN]: [],
   [ROLES.COMPANY]: [],
-  [ROLES.ORGANIZATION]: [],
+  [ROLES.ORGANIZATION]: [
+  { label: "Overview", to: `${base[ROLES.ORGANIZATION]}/overview` },
+  { label: "Discover Needs", to: `${base[ROLES.ORGANIZATION]}/discover` },
+  { label: "Projects", to: `${base[ROLES.ORGANIZATION]}/projects` },
+  { label: "Impact", to: `${base[ROLES.ORGANIZATION]}/impact` },
+],
 };
